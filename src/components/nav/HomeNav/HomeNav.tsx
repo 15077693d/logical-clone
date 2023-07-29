@@ -17,7 +17,6 @@ export default function HomeNav() {
   useEffect(() => {
     const handleScroll = () => {
       const scrollY = window.scrollY;
-      console.log(scrollY, scrollY <= endScrollYForTranslateX, isLg);
       if (
         scrollY >= startScrollYForTranslateX &&
         scrollY <= endScrollYForTranslateX &&
