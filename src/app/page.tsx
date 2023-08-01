@@ -1,12 +1,15 @@
 import HomeNav from "@/components/nav/HomeNav/HomeNav";
+import Hero from "@/sections/hero/Hero";
 
 export default function Home() {
   return (
-    <main id="home" className="h-[200vh] bg-gray">
+    <main id="home">
       <HomeNav />
-
-      <div className="h-[200px] w-[80vw]"></div>
-      <div className="bg-[black] h-[200px] w-[80vw]"></div>
+      <Hero />
+      <section
+        id="hero"
+        className="h-[100vh] flex flex-col justify-center"
+      ></section>
     </main>
   );
 }

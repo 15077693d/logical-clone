@@ -2,26 +2,35 @@
 import Logo from "@/components/image/Logo";
 import Mark from "@/components/image/Mark";
 import { CONSTANTS_FOR_ANIMATE_NAV } from "@/constants";
-import resolveConfig from "tailwindcss/resolveConfig";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
 import { getAnimationValueByScrollY } from "@/utils/animation/animation";
 import clsx from "clsx";
 import React, { useEffect, useState } from "react";
-import { lgValue } from "@/constants/styles";
-const { startScrollYForTranslateX, endScrollYForTranslateX } =
+import { preXLValue } from "@/constants/styles";
+const { startScrollYForTranslateX, endScrollYForTranslateX, maxTranslateY } =
   CONSTANTS_FOR_ANIMATE_NAV;
-
 export default function HomeNav() {
-  const isLg = useMediaQuery(`(min-width: ${lgValue})`);
+  const isPreLg = useMediaQuery(`(min-width: ${preXLValue})`);
   const [width, setWidth] = useState(50);
+  const [translateY, setTranslateY] = useState(0);
+
   useEffect(() => {
     const handleScroll = () => {
       const scrollY = window.scrollY;
       if (
         scrollY >= startScrollYForTranslateX &&
         scrollY <= endScrollYForTranslateX &&
-        isLg
+        isPreLg
       ) {
+        setTranslateY(
+          getAnimationValueByScrollY(
+            startScrollYForTranslateX,
+            endScrollYForTranslateX,
+            scrollY,
+            maxTranslateY,
+            0
+          )
+        );
         setWidth(
           getAnimationValueByScrollY(
             startScrollYForTranslateX,
@@ -45,10 +54,16 @@ export default function HomeNav() {
   return (
     <header
       className={clsx(
-        "lg:w-[50%]",
-        "mix-blend-difference w-full flex justify-between items-center fixed p-12"
+        "preXL:w-[50%]",
+        "lg:px-20 lg:py-16",
+        "md:p-14",
+        "mix-blend-difference w-full flex justify-between items-center fixed px-9 py-7"
       )}
-      style={isLg ? { width: `${width}%` } : {}}
+      style={
+        isPreLg
+          ? { width: `${width}%`, transform: `translateY(-${translateY}px)` }
+          : {}
+      }
     >
       <Logo />
       <Mark />

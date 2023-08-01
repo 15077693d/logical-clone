@@ -2,12 +2,18 @@
 import { CONSTANTS_FOR_ANIMATE_NAV } from "@/constants";
 import { getAnimationValueByScrollY } from "@/utils/animation/animation";
 import React, { useEffect, useState } from "react";
-const { startScrollY, endScrollY, minScale, changeColorScrollY } =
-  CONSTANTS_FOR_ANIMATE_NAV;
+const {
+  startScrollY,
+  endScrollY,
+  minScale,
+  changeColorScrollY,
+  maxTranslateX,
+} = CONSTANTS_FOR_ANIMATE_NAV;
 
 export default function Logo() {
   const [scale, setScale] = useState(1);
   const [isRedBlend, setIsRedBlend] = useState<boolean>(true);
+  const [translateX, setTranslateX] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -29,6 +35,14 @@ export default function Logo() {
             0
           );
         setScale(newScaleValue);
+        const newTranslateXValue = getAnimationValueByScrollY(
+          startScrollY,
+          endScrollY,
+          scrollY,
+          maxTranslateX,
+          0
+        );
+        setTranslateX(newTranslateXValue);
       }
 
       if (scrollY > changeColorScrollY) {
@@ -50,11 +64,11 @@ export default function Logo() {
       viewBox="0 0 128 40"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      className={` ${
+      className={`${
         isRedBlend ? "text-redForLogoBlend" : "text-grayForLogoBlend"
       } mix-blend-differences`}
       style={{
-        transform: `scale(${scale})`,
+        transform: `scale(${scale}) translateX(-${translateX}px)`,
       }}
     >
       <path

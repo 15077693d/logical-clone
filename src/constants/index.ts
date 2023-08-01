@@ -5,4 +5,6 @@ export const CONSTANTS_FOR_ANIMATE_NAV = {
   endScrollYForTranslateX: 300,
   changeColorScrollY: 200,
   minScale: 0.75,
+  maxTranslateX: 30,
+  maxTranslateY: 30,
 };

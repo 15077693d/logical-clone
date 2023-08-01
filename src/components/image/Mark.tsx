@@ -3,10 +3,13 @@ import { CONSTANTS_FOR_ANIMATE_NAV } from "@/constants";
 import { getAnimationValueByScrollY } from "@/utils/animation/animation";
 import React, { useEffect, useState } from "react";
 
-const { startScrollY, endScrollY, minScale } = CONSTANTS_FOR_ANIMATE_NAV;
+const { startScrollY, endScrollY, minScale, maxTranslateX } =
+  CONSTANTS_FOR_ANIMATE_NAV;
 export default function Mark() {
   const [rotationTurn, setRotationTurn] = useState(0);
   const [scale, setScale] = useState(1);
+  const [translateX, setTranslateX] = useState(0);
+
   useEffect(() => {
     const handleScroll = () => {
       const scrollY = window.scrollY;
@@ -35,6 +38,14 @@ export default function Mark() {
             1 - minScale,
             0
           );
+        const newTranslateXValue = getAnimationValueByScrollY(
+          startScrollY,
+          endScrollY,
+          scrollY,
+          maxTranslateX,
+          0
+        );
+        setTranslateX(newTranslateXValue);
         setScale(newScaleValue);
         setRotationTurn(newRotationValue);
       }

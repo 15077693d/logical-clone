@@ -4,5 +4,11 @@
 
 body,
 html {
+  font-family: "Bauziet Variable", sans-serif;
   background-color: theme("colors.grayForBackground");
+}
+
+@font-face {
+  font-family: "Bauziet Variable";
+  src: url("../../public/fonts/Bauziet-Variable.ttf");
 }

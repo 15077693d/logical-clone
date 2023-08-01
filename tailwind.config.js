@@ -6,14 +6,23 @@ module.exports = {
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-    colors: {
-      redForLogoBlend: "#F86A83",
-      grayForLogoBlend: "#D2D3D4",
-      grayForBackground: "#F8FAF9",
-      grayForHeroRight: "#A9ADAD",
+    fontFamily: {
+      "bauziet-variable": ["bauziet-variable"],
     },
-    screens: {
-      lg: "1200px",
+    extend: {
+      colors: {
+        redForLogoBlend: "#F86A83",
+        grayForLogoBlend: "#D2D3D4",
+        grayForBackground: "#E7E9EA",
+        grayForHeroLeft: "#F8FAF9",
+        grayForHeroRight: "#B3B7B7",
+      },
+      screens: {
+        preXL: "1201px",
+      },
+      fontSize: {
+        "8xl": ["7rem"],
+      },
     },
   },
   plugins: [],
