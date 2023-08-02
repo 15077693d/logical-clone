@@ -10,7 +10,7 @@ import { preXLValue } from "@/constants/styles";
 const { startScrollYForTranslateX, endScrollYForTranslateX, maxTranslateY } =
   CONSTANTS_FOR_ANIMATE_NAV;
 export default function HomeNav() {
-  const isPreLg = useMediaQuery(`(min-width: ${preXLValue})`);
+  const isPreXL = useMediaQuery(`(min-width: ${preXLValue})`);
   const [width, setWidth] = useState(50);
   const [translateY, setTranslateY] = useState(0);
 
@@ -20,7 +20,7 @@ export default function HomeNav() {
       if (
         scrollY >= startScrollYForTranslateX &&
         scrollY <= endScrollYForTranslateX &&
-        isPreLg
+        isPreXL
       ) {
         setTranslateY(
           getAnimationValueByScrollY(
@@ -57,10 +57,10 @@ export default function HomeNav() {
         "preXL:w-[50%]",
         "lg:px-20 lg:py-16",
         "md:p-14",
-        "mix-blend-difference w-full flex justify-between items-center fixed px-9 py-7"
+        "mix-blend-difference w-full flex justify-between items-center fixed px-9 py-7 z-30"
       )}
       style={
-        isPreLg
+        isPreXL
           ? { width: `${width}%`, transform: `translateY(-${translateY}px)` }
           : {}
       }
