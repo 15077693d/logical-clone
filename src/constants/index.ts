@@ -1,6 +1,12 @@
 import { ScreenKeys } from "./styles";
 
 export const CONSTANTS_FOR_SCROLLY_ANIMATION = {
+  screenScaleUp: {
+    start: 0,
+    end: 100,
+    max: 100,
+    min: 50,
+  },
   screenBottomUp: (screen: ScreenKeys | null) => {
     // max value: height of the end of the scroll
     // min value: inital bottom
@@ -14,13 +20,10 @@ export const CONSTANTS_FOR_SCROLLY_ANIMATION = {
       case ScreenKeys.lg:
         min = -30;
         break;
-      case ScreenKeys.preXL:
-        min = -10;
-        break;
     }
     return {
       start: 0,
-      end: 100,
+      end: 150,
       max: 0,
       min,
     };
@@ -71,8 +74,8 @@ export const CONSTANTS_FOR_SCROLLY_ANIMATION = {
     min: 0,
   },
   heroSectionTranslateY: {
-    start: 100,
-    end: 300,
+    start: 150,
+    end: 350,
     max: 100,
     min: 0,
   },

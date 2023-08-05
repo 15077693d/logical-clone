@@ -55,7 +55,7 @@ export default function Logo() {
       xmlns="http://www.w3.org/2000/svg"
       className={`${
         isRedBlend ? "text-redForLogoBlend" : "text-grayForLogoBlend"
-      } mix-blend-differences`}
+      } mix-blend-differences transition-all`}
       style={{
         transform: `scale(${scale}) translateX(-${translateX}px)`,
       }}
