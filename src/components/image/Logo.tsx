@@ -1,14 +1,9 @@
 "use client";
-import { CONSTANTS_FOR_ANIMATE_NAV } from "@/constants";
+import { CONSTANTS_FOR_SCROLLY_ANIMATION } from "@/constants";
 import { getAnimationValueByScrollY } from "@/utils/animation/animation";
 import React, { useEffect, useState } from "react";
-const {
-  startScrollY,
-  endScrollY,
-  minScale,
-  changeColorScrollY,
-  maxTranslateX,
-} = CONSTANTS_FOR_ANIMATE_NAV;
+const { logoColor, logoScale, logoTranslateX } =
+  CONSTANTS_FOR_SCROLLY_ANIMATION;
 
 export default function Logo() {
   const [scale, setScale] = useState(1);
@@ -18,34 +13,28 @@ export default function Logo() {
   useEffect(() => {
     const handleScroll = () => {
       const scrollY = window.scrollY;
-      // init
-      if (scrollY <= startScrollY) {
+      // logoScaleWhenScrollY
+      if (scrollY <= logoScale.start) {
         setScale(1);
-        // after
-      } else if (scrollY > endScrollY) {
-        setScale(minScale);
-      } else if (scrollY >= startScrollY && scrollY <= endScrollY) {
+      } else if (scrollY > logoScale.end) {
+        setScale(1 - logoScale.max);
+      } else if (scrollY >= logoScale.start && scrollY <= logoScale.end) {
         const newScaleValue =
-          1 -
-          getAnimationValueByScrollY(
-            startScrollY,
-            endScrollY,
-            scrollY,
-            1 - minScale,
-            0
-          );
+          1 - getAnimationValueByScrollY({ ...logoScale, scrollY });
         setScale(newScaleValue);
-        const newTranslateXValue = getAnimationValueByScrollY(
-          startScrollY,
-          endScrollY,
+      }
+
+      // logoTranslateXWhenScrollY
+      if (scrollY >= logoScale.start && scrollY <= logoScale.end) {
+        const newTranslateXValue = getAnimationValueByScrollY({
+          ...logoTranslateX,
           scrollY,
-          maxTranslateX,
-          0
-        );
+        });
         setTranslateX(newTranslateXValue);
       }
 
-      if (scrollY > changeColorScrollY) {
+      // logoColorWhenScrollY
+      if (scrollY > logoColor.start) {
         setIsRedBlend(false);
       } else {
         setIsRedBlend(true);

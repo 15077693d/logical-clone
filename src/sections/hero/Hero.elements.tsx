@@ -45,7 +45,7 @@ export function HeroRight({ opacity }: { opacity: number }) {
   return (
     <div
       id="right"
-      className={clsx("w-[50%] h-[100%] relative", "preXL:block")}
+      className={clsx("w-[50%] h-[100%] relative hidden", "preXL:block")}
     >
       <img
         src="images/env-card.png"

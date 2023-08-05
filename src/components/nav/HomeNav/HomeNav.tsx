@@ -1,49 +1,46 @@
 "use client";
 import Logo from "@/components/image/Logo";
 import Mark from "@/components/image/Mark";
-import { CONSTANTS_FOR_ANIMATE_NAV } from "@/constants";
-import { useMediaQuery } from "@/hooks/useMediaQuery";
+import { CONSTANTS_FOR_SCROLLY_ANIMATION } from "@/constants";
+import { useIsMediaQuery } from "@/hooks/useIsMediaQuery";
 import { getAnimationValueByScrollY } from "@/utils/animation/animation";
 import clsx from "clsx";
 import React, { useEffect, useState } from "react";
 import { preXLValue } from "@/constants/styles";
-const { startScrollYForTranslateX, endScrollYForTranslateX, maxTranslateY } =
-  CONSTANTS_FOR_ANIMATE_NAV;
+const { navBarWidth, navBarTranslateY } = CONSTANTS_FOR_SCROLLY_ANIMATION;
 export default function HomeNav() {
-  const isPreXL = useMediaQuery(`(min-width: ${preXLValue})`);
+  const isPreXL = useIsMediaQuery(`(min-width: ${preXLValue})`);
   const [width, setWidth] = useState(50);
   const [translateY, setTranslateY] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => {
       const scrollY = window.scrollY;
+      // navBarWidth
+      if (scrollY > navBarWidth.start && scrollY < navBarWidth.end && isPreXL) {
+        setWidth(
+          getAnimationValueByScrollY({
+            ...navBarWidth,
+            scrollY,
+          })
+        );
+      } else if (scrollY >= navBarWidth.start) {
+        setWidth(navBarWidth.max);
+      } else if (scrollY <= navBarWidth.end) {
+        setWidth(navBarWidth.min);
+      }
+      // navBarTranslateY
       if (
-        scrollY >= startScrollYForTranslateX &&
-        scrollY <= endScrollYForTranslateX &&
+        scrollY >= navBarTranslateY.start &&
+        scrollY <= navBarTranslateY.end &&
         isPreXL
       ) {
         setTranslateY(
-          getAnimationValueByScrollY(
-            startScrollYForTranslateX,
-            endScrollYForTranslateX,
+          getAnimationValueByScrollY({
+            ...navBarTranslateY,
             scrollY,
-            maxTranslateY,
-            0
-          )
+          })
         );
-        setWidth(
-          getAnimationValueByScrollY(
-            startScrollYForTranslateX,
-            endScrollYForTranslateX,
-            scrollY,
-            100,
-            50
-          )
-        );
-      } else if (scrollY >= startScrollYForTranslateX) {
-        setWidth(100);
-      } else if (scrollY <= endScrollYForTranslateX) {
-        setWidth(50);
       }
     };
     window.addEventListener("scroll", handleScroll, true);

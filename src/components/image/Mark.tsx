@@ -1,59 +1,43 @@
 "use client";
-import { CONSTANTS_FOR_ANIMATE_NAV } from "@/constants";
+import { CONSTANTS_FOR_SCROLLY_ANIMATION } from "@/constants";
 import { getAnimationValueByScrollY } from "@/utils/animation/animation";
 import React, { useEffect, useState } from "react";
 
-const { startScrollY, endScrollY, minScale, maxTranslateX } =
-  CONSTANTS_FOR_ANIMATE_NAV;
+const { markRotate, markScale } = CONSTANTS_FOR_SCROLLY_ANIMATION;
 export default function Mark() {
   const [rotationTurn, setRotationTurn] = useState(0);
   const [scale, setScale] = useState(1);
-  const [translateX, setTranslateX] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => {
       const scrollY = window.scrollY;
-      // init
-      if (scrollY <= startScrollY) {
-        setScale(1);
-        setRotationTurn(0);
-        // after
-      } else if (scrollY > endScrollY) {
-        setScale(minScale);
-        setRotationTurn(0);
-      } else if (scrollY >= startScrollY && scrollY <= endScrollY) {
-        const newRotationValue = getAnimationValueByScrollY(
-          startScrollY,
-          endScrollY,
+      // markRotate
+      if (scrollY <= markRotate.start || scrollY >= markRotate.end) {
+        setRotationTurn(markRotate.min);
+      } else if (scrollY > markRotate.start && scrollY < markRotate.end) {
+        const newRotationValue = getAnimationValueByScrollY({
+          ...markRotate,
           scrollY,
-          1,
-          0
-        );
-        const newScaleValue =
-          1 -
-          getAnimationValueByScrollY(
-            startScrollY,
-            endScrollY,
-            scrollY,
-            1 - minScale,
-            0
-          );
-        const newTranslateXValue = getAnimationValueByScrollY(
-          startScrollY,
-          endScrollY,
-          scrollY,
-          maxTranslateX,
-          0
-        );
-        setTranslateX(newTranslateXValue);
-        setScale(newScaleValue);
+        });
         setRotationTurn(newRotationValue);
+      }
+      // markScale
+      if (scrollY <= markScale.start) {
+        setScale(1);
+        // after
+      } else if (scrollY > markScale.end) {
+        setScale(1 - markScale.max);
+      } else if (scrollY > markScale.start && scrollY <= markScale.end) {
+        const newScaleValue =
+          1 - getAnimationValueByScrollY({ ...markScale, scrollY });
+        setScale(newScaleValue);
       }
     };
     handleScroll();
     window.addEventListener("scroll", handleScroll, true);
     return window.removeEventListener("scroll", handleScroll);
   }, []);
+
   return (
     <svg
       style={{

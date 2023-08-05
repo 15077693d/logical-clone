@@ -19,7 +19,13 @@ module.exports = {
         grayForHeroRight: "#B3B7B7",
       },
       screens: {
+        sm: "640px",
+        md: "768px",
+        preLG: "800px",
+        lg: "1024px",
         preXL: "1201px",
+        xl: "1280px",
+        "2xl": "1536px",
       },
       fontSize: {
         "8xl": ["7rem"],

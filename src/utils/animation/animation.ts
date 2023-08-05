@@ -1,13 +1,10 @@
-export const getAnimationValueByScrollY = (
-  startScrollY: number,
-  endScrollY: number,
-  currentScrollY: number,
-  maxAnimationValue: number,
-  minAnimationValue: number
-) => {
-  return (
-    maxAnimationValue -
-    ((maxAnimationValue - minAnimationValue) * (endScrollY - currentScrollY)) /
-      (endScrollY - startScrollY)
-  );
+export const getAnimationValueByScrollY = (values: {
+  start: number;
+  end: number;
+  scrollY: number;
+  max: number;
+  min: number;
+}) => {
+  const { start, end, scrollY, max, min } = values;
+  return max - ((max - min) * (end - scrollY)) / (end - start);
 };
