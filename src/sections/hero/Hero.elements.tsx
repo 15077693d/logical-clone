@@ -52,6 +52,22 @@ export function HeroRight({ opacity }: { opacity: number }) {
         alt="env-card"
         className="absolute left-[-100px] top-[25%] z-20 h-[349px]"
       />
+      <img
+        src="images/deploy.png"
+        alt="deploy-card"
+        className="absolute left-[140px] top-[-60px] z-20 min-w-[680px] w-[680px] min-h-[328px] h-[328px]"
+      />
+      <img
+        src="images/type.png"
+        alt="type-card"
+        className="absolute right-[-80px] bottom-[-100px] z-20 w-[400px]"
+      />
+      <img
+        src="images/modal.png"
+        alt="modal-card"
+        className="absolute left-[0px] bottom-[-150px] z-20 w-[500px]"
+      />
+
       <div
         style={{ opacity }}
         className="bg-grayForHeroRight w-full h-full absolute left-0 z-10"

@@ -52,7 +52,7 @@ export default function Hero() {
     <section
       id="hero"
       className={clsx(
-        "h-[100vh] w-[100%]",
+        "h-[100vh] w-[100%] overflow-hidden",
         "preXL:flex",
         "preXL:sticky preXL:top-0"
       )}
