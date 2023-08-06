@@ -1,6 +1,9 @@
+import { CONSTANTS_FOR_SCROLLY_ANIMATION } from "@/constants/animations";
+import { getAnimationValueByScrollY } from "@/utils/animation/animation";
 import clsx from "clsx";
-import React from "react";
-
+import React, { useEffect, useState } from "react";
+const { heroRightImageTranslateX, heroRightImageTranslateY } =
+  CONSTANTS_FOR_SCROLLY_ANIMATION;
 export function HeroLeft({ opacity }: { opacity: number }) {
   return (
     <div
@@ -42,32 +45,100 @@ export function HeroLeft({ opacity }: { opacity: number }) {
 }
 
 export function HeroRight({ opacity }: { opacity: number }) {
+  const [imagesTranslateX, setImagesTranslateX] = useState({
+    image1: 0,
+    image2: 0,
+    image3: 0,
+    image4: 0,
+  });
+  const [imagesTranslateY, setImagesTranslateY] = useState({
+    image1: 0,
+    image2: 0,
+    image3: 0,
+    image4: 0,
+  });
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+      setImagesTranslateX({
+        image1: getAnimationValueByScrollY({
+          scrollY,
+          ...heroRightImageTranslateX("image1"),
+        }),
+        image2: getAnimationValueByScrollY({
+          scrollY,
+          ...heroRightImageTranslateX("image2"),
+        }),
+        image3: getAnimationValueByScrollY({
+          scrollY,
+          ...heroRightImageTranslateX("image3"),
+        }),
+        image4: getAnimationValueByScrollY({
+          scrollY,
+          ...heroRightImageTranslateX("image4"),
+        }),
+      });
+      setImagesTranslateY({
+        image1: getAnimationValueByScrollY({
+          scrollY,
+          ...heroRightImageTranslateY("image1"),
+        }),
+        image2: getAnimationValueByScrollY({
+          scrollY,
+          ...heroRightImageTranslateY("image2"),
+        }),
+        image3: getAnimationValueByScrollY({
+          scrollY,
+          ...heroRightImageTranslateY("image3"),
+        }),
+        image4: getAnimationValueByScrollY({
+          scrollY,
+          ...heroRightImageTranslateY("image4"),
+        }),
+      });
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
   return (
     <div
       id="right"
       className={clsx("w-[50%] h-[100%] relative hidden", "preXL:block")}
     >
       <img
-        src="images/env-card.png"
-        alt="env-card"
+        src="images/image1.png"
+        alt="image1"
+        style={{
+          transform: `translateX(-${imagesTranslateX["image1"]}px) translateY(-${imagesTranslateY["image1"]}px)`,
+        }}
         className="absolute left-[-100px] top-[25%] z-20 h-[349px]"
       />
       <img
-        src="images/deploy.png"
-        alt="deploy-card"
+        src="images/image2.png"
+        alt="image2"
+        style={{
+          transform: `translateX(${imagesTranslateX["image2"]}px) translateY(${imagesTranslateY["image2"]}px)`,
+        }}
         className="absolute left-[140px] top-[-60px] z-20 min-w-[680px] w-[680px] min-h-[328px] h-[328px]"
       />
       <img
-        src="images/type.png"
-        alt="type-card"
+        src="images/image3.png"
+        alt="image3"
+        style={{
+          transform: `translateX(${imagesTranslateX["image3"]}px) translateY(${imagesTranslateY["image3"]}px)`,
+        }}
         className="absolute right-[-80px] bottom-[-100px] z-20 w-[400px]"
       />
       <img
-        src="images/modal.png"
-        alt="modal-card"
+        src="images/image4.png"
+        alt="image4"
+        style={{
+          transform: `translateX(${imagesTranslateX["image4"]}px) translateY(-${imagesTranslateY["image4"]}px)`,
+        }}
         className="absolute left-[0px] bottom-[-170px] z-20 w-[450px]"
       />
-
       <div
         style={{ opacity }}
         className="bg-grayForHeroRight w-full h-full absolute left-0 z-10"

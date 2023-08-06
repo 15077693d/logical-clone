@@ -1,5 +1,5 @@
 "use client";
-import { CONSTANTS_FOR_SCROLLY_ANIMATION } from "@/constants";
+import { CONSTANTS_FOR_SCROLLY_ANIMATION } from "@/constants/animations";
 import { SCREENS_VALUES, preXLValue } from "@/constants/styles";
 import { useIsMediaQuery } from "@/hooks/useIsMediaQuery";
 import { useMediaQuery } from "@/hooks/useMediaQuery/useMediaQuery";

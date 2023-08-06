@@ -1,5 +1,5 @@
 "use client";
-import { CONSTANTS_FOR_SCROLLY_ANIMATION } from "@/constants";
+import { CONSTANTS_FOR_SCROLLY_ANIMATION } from "@/constants/animations";
 import { getAnimationValueByScrollY } from "@/utils/animation/animation";
 import React, { useEffect, useState } from "react";
 const { logoColor, logoScale, logoTranslateX } =

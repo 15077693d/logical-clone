@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { HeroLeft, HeroRight } from "./Hero.elements";
 import clsx from "clsx";
 import { getAnimationValueByScrollY } from "@/utils/animation/animation";
-import { CONSTANTS_FOR_SCROLLY_ANIMATION } from "@/constants";
+import { CONSTANTS_FOR_SCROLLY_ANIMATION } from "@/constants/animations";
 import { useIsMediaQuery } from "@/hooks/useIsMediaQuery";
 import { preXLValue } from "@/constants/styles";
 const { heroSectionLeftRightOpacity, heroSectionTranslateY } =

@@ -79,4 +79,46 @@ export const CONSTANTS_FOR_SCROLLY_ANIMATION = {
     max: 100,
     min: 0,
   },
+  heroRightImageTranslateX: (
+    imageId: "image1" | "image2" | "image3" | "image4"
+  ) => {
+    let max = 0;
+    switch (imageId) {
+      case "image1":
+        max = 100;
+        break;
+      case "image3":
+        max = 400;
+        break;
+      default:
+        break;
+    }
+    return {
+      start: 150,
+      end: 350,
+      max,
+      min: 0,
+    };
+  },
+  heroRightImageTranslateY: (
+    imageId: "image1" | "image2" | "image3" | "image4"
+  ) => {
+    let max = 0;
+    switch (imageId) {
+      case "image1":
+        max = 400;
+        break;
+      case "image4":
+        max = 400;
+        break;
+      default:
+        break;
+    }
+    return {
+      start: 150,
+      end: 350,
+      max,
+      min: 0,
+    };
+  },
 };

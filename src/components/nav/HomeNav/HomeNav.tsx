@@ -1,7 +1,7 @@
 "use client";
 import Logo from "@/components/image/Logo";
 import Mark from "@/components/image/Mark";
-import { CONSTANTS_FOR_SCROLLY_ANIMATION } from "@/constants";
+import { CONSTANTS_FOR_SCROLLY_ANIMATION } from "@/constants/animations";
 import { useIsMediaQuery } from "@/hooks/useIsMediaQuery";
 import { getAnimationValueByScrollY } from "@/utils/animation/animation";
 import clsx from "clsx";
