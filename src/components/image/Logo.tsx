@@ -14,24 +14,16 @@ export default function Logo() {
     const handleScroll = () => {
       const scrollY = window.scrollY;
       // logoScaleWhenScrollY
-      if (scrollY <= logoScale.start) {
-        setScale(1);
-      } else if (scrollY > logoScale.end) {
-        setScale(1 - logoScale.max);
-      } else if (scrollY >= logoScale.start && scrollY <= logoScale.end) {
-        const newScaleValue =
-          1 - getAnimationValueByScrollY({ ...logoScale, scrollY });
-        setScale(newScaleValue);
-      }
+      const newScaleValue =
+        1 - getAnimationValueByScrollY({ ...logoScale, scrollY });
+      setScale(newScaleValue);
 
       // logoTranslateXWhenScrollY
-      if (scrollY >= logoScale.start && scrollY <= logoScale.end) {
-        const newTranslateXValue = getAnimationValueByScrollY({
-          ...logoTranslateX,
-          scrollY,
-        });
-        setTranslateX(newTranslateXValue);
-      }
+      const newTranslateXValue = getAnimationValueByScrollY({
+        ...logoTranslateX,
+        scrollY,
+      });
+      setTranslateX(newTranslateXValue);
 
       // logoColorWhenScrollY
       if (scrollY > logoColor.start) {

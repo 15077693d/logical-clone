@@ -12,26 +12,15 @@ export default function Mark() {
     const handleScroll = () => {
       const scrollY = window.scrollY;
       // markRotate
-      if (scrollY <= markRotate.start || scrollY >= markRotate.end) {
-        setRotationTurn(markRotate.min);
-      } else if (scrollY > markRotate.start && scrollY < markRotate.end) {
-        const newRotationValue = getAnimationValueByScrollY({
-          ...markRotate,
-          scrollY,
-        });
-        setRotationTurn(newRotationValue);
-      }
+      const newRotationValue = getAnimationValueByScrollY({
+        ...markRotate,
+        scrollY,
+      });
+      setRotationTurn(newRotationValue);
       // markScale
-      if (scrollY <= markScale.start) {
-        setScale(1);
-        // after
-      } else if (scrollY > markScale.end) {
-        setScale(1 - markScale.max);
-      } else if (scrollY > markScale.start && scrollY <= markScale.end) {
-        const newScaleValue =
-          1 - getAnimationValueByScrollY({ ...markScale, scrollY });
-        setScale(newScaleValue);
-      }
+      const newScaleValue =
+        1 - getAnimationValueByScrollY({ ...markScale, scrollY });
+      setScale(newScaleValue);
     };
     handleScroll();
     window.addEventListener("scroll", handleScroll, true);

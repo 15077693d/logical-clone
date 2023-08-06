@@ -65,7 +65,7 @@ export function HeroRight({ opacity }: { opacity: number }) {
       <img
         src="images/modal.png"
         alt="modal-card"
-        className="absolute left-[0px] bottom-[-150px] z-20 w-[500px]"
+        className="absolute left-[0px] bottom-[-170px] z-20 w-[450px]"
       />
 
       <div

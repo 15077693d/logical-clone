@@ -18,31 +18,21 @@ export default function Hero() {
     const handleScroll = () => {
       const scrollY = window.scrollY;
       // heroSectionLeftRightOpacityWhenScrollY
-      if (
-        scrollY >= heroSectionLeftRightOpacity.start &&
-        scrollY <= heroSectionLeftRightOpacity.end
-      ) {
-        setOpacity(
-          1 -
-            getAnimationValueByScrollY({
-              ...heroSectionLeftRightOpacity,
-              scrollY,
-            })
-        );
-      } else if (scrollY >= heroSectionLeftRightOpacity.end) {
-        setOpacity(heroSectionLeftRightOpacity.min);
-      }
-      // heroSectionTranslateYWhenScrollY
-      if (scrollY >= heroSectionTranslateY.start) {
-        setTranslateY(
+      setOpacity(
+        1 -
           getAnimationValueByScrollY({
-            ...heroSectionTranslateY,
+            ...heroSectionLeftRightOpacity,
             scrollY,
           })
-        );
-      } else {
-        setTranslateY(heroSectionTranslateY.min);
-      }
+      );
+
+      // heroSectionTranslateYWhenScrollY
+      setTranslateY(
+        getAnimationValueByScrollY({
+          ...heroSectionTranslateY,
+          scrollY,
+        })
+      );
     };
     window.addEventListener("scroll", handleScroll, true);
     handleScroll();

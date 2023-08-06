@@ -22,32 +22,22 @@ export default function Screens() {
     const handleScrollY = () => {
       // screenBottomUp
       const scrollY = window.scrollY;
-      if (scrollY >= screenBottomUpFromScreening.end) {
-        setBottom(screenBottomUpFromScreening.max);
-      } else if (scrollY > screenBottomUpFromScreening.start) {
-        setBottom(
+
+      setBottom(
+        getAnimationValueByScrollY({
+          ...screenBottomUpFromScreening,
+          scrollY,
+        })
+      );
+
+      // screenScaleUp
+      if (isPreXL) {
+        setWidth(
           getAnimationValueByScrollY({
-            ...screenBottomUpFromScreening,
+            ...screenScaleUp,
             scrollY,
           })
         );
-      } else if (scrollY <= screenBottomUpFromScreening.start) {
-        setBottom(screenBottomUpFromScreening.min);
-      }
-      // screenScaleUp
-      if (isPreXL) {
-        if (scrollY >= screenScaleUp.end) {
-          setWidth(screenScaleUp.max);
-        } else if (scrollY > screenScaleUp.start) {
-          setWidth(
-            getAnimationValueByScrollY({
-              ...screenScaleUp,
-              scrollY,
-            })
-          );
-        } else if (scrollY <= screenScaleUp.start) {
-          setWidth(screenScaleUp.min);
-        }
       }
     };
     handleScrollY();

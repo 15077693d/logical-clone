@@ -41,13 +41,13 @@ export const CONSTANTS_FOR_SCROLLY_ANIMATION = {
     min: 0,
   },
   navBarWidth: {
-    start: 50,
+    start: 100,
     end: 400,
     max: 100,
     min: 50,
   },
   navBarTranslateY: {
-    start: 50,
+    start: 100,
     end: 400,
     max: 30,
     min: 0,

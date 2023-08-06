@@ -16,25 +16,16 @@ export default function HomeNav() {
   useEffect(() => {
     const handleScroll = () => {
       const scrollY = window.scrollY;
-      // navBarWidth
-      if (scrollY > navBarWidth.start && scrollY < navBarWidth.end && isPreXL) {
+      if (isPreXL) {
+        // navBarWidth
         setWidth(
           getAnimationValueByScrollY({
             ...navBarWidth,
             scrollY,
           })
         );
-      } else if (scrollY >= navBarWidth.start) {
-        setWidth(navBarWidth.max);
-      } else if (scrollY <= navBarWidth.end) {
-        setWidth(navBarWidth.min);
-      }
-      // navBarTranslateY
-      if (
-        scrollY >= navBarTranslateY.start &&
-        scrollY <= navBarTranslateY.end &&
-        isPreXL
-      ) {
+
+        // navBarTranslateY
         setTranslateY(
           getAnimationValueByScrollY({
             ...navBarTranslateY,
