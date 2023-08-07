@@ -113,7 +113,7 @@ export function HeroRight({ opacity }: { opacity: number }) {
         style={{
           transform: `translateX(-${imagesTranslateX["image1"]}px) translateY(-${imagesTranslateY["image1"]}px)`,
         }}
-        className="absolute left-[-100px] top-[25%] z-20 h-[349px]"
+        className="absolute left-[-100px] top-[25%] z-20 h-[349px] transition-all"
       />
       <img
         src="images/image2.png"
@@ -121,7 +121,7 @@ export function HeroRight({ opacity }: { opacity: number }) {
         style={{
           transform: `translateX(${imagesTranslateX["image2"]}px) translateY(${imagesTranslateY["image2"]}px)`,
         }}
-        className="absolute left-[140px] top-[-60px] z-20 min-w-[680px] w-[680px] min-h-[328px] h-[328px]"
+        className="absolute left-[140px] top-[-60px] z-20 min-w-[680px] w-[680px] min-h-[328px] h-[328px] transition-all"
       />
       <img
         src="images/image3.png"
@@ -129,7 +129,7 @@ export function HeroRight({ opacity }: { opacity: number }) {
         style={{
           transform: `translateX(${imagesTranslateX["image3"]}px) translateY(${imagesTranslateY["image3"]}px)`,
         }}
-        className="absolute right-[-80px] bottom-[-100px] z-20 w-[400px]"
+        className="absolute right-[-80px] bottom-[-100px] z-20 w-[400px] transition-all"
       />
       <img
         src="images/image4.png"
@@ -137,7 +137,7 @@ export function HeroRight({ opacity }: { opacity: number }) {
         style={{
           transform: `translateX(${imagesTranslateX["image4"]}px) translateY(-${imagesTranslateY["image4"]}px)`,
         }}
-        className="absolute left-[0px] bottom-[-170px] z-20 w-[450px]"
+        className="absolute left-[0px] bottom-[-170px] z-20 w-[450px] transition-all"
       />
       <div
         style={{ opacity }}

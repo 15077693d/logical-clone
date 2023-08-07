@@ -85,7 +85,7 @@ export const CONSTANTS_FOR_SCROLLY_ANIMATION = {
     let max = 0;
     switch (imageId) {
       case "image1":
-        max = 100;
+        max = 50;
         break;
       case "image3":
         max = 400;
@@ -109,7 +109,7 @@ export const CONSTANTS_FOR_SCROLLY_ANIMATION = {
         max = 400;
         break;
       case "image4":
-        max = 400;
+        max = 1000;
         break;
       default:
         break;
@@ -122,3 +122,9 @@ export const CONSTANTS_FOR_SCROLLY_ANIMATION = {
     };
   },
 };
+
+export enum ScreenId {
+  screen1 = "screen1",
+  screen2 = "screen2",
+  screen3 = "screen3",
+}

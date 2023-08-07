@@ -1,5 +1,8 @@
 "use client";
-import { CONSTANTS_FOR_SCROLLY_ANIMATION } from "@/constants/animations";
+import {
+  CONSTANTS_FOR_SCROLLY_ANIMATION,
+  ScreenId,
+} from "@/constants/animations";
 import { SCREENS_VALUES, preXLValue } from "@/constants/styles";
 import { useIsMediaQuery } from "@/hooks/useIsMediaQuery";
 import { useMediaQuery } from "@/hooks/useMediaQuery/useMediaQuery";
@@ -7,8 +10,13 @@ import { getAnimationValueByScrollY } from "@/utils/animation/animation";
 import { getScreenImgScale } from "@/utils/screen";
 import clsx from "clsx";
 import React, { useEffect, useMemo, useState } from "react";
+import "./Screens.css";
 const { screenBottomUp, screenScaleUp } = CONSTANTS_FOR_SCROLLY_ANIMATION;
-export default function Screens() {
+export default function Screens({
+  activeScreenId,
+}: {
+  activeScreenId: ScreenId;
+}) {
   const screen = useMediaQuery(SCREENS_VALUES);
   const isPreXL = useIsMediaQuery(`(min-width: ${preXLValue})`);
   const scale = useMemo(() => {
@@ -59,11 +67,23 @@ export default function Screens() {
           : {
               bottom: `${bottom}%`,
               left: 0,
+              width: "100%",
+              height: "100%",
             }
       }
-      className={clsx("fixed z-20 transition-all")}
+      className={clsx("fixed z-20")}
     >
-      <img alt="screen1" src={`images/screen1/${scale}.png`} />
+      {Object.values(ScreenId).map((screenId) => (
+        <img
+          key={`screens_${screenId}`}
+          className="bottom-0  left-0 absolute transition-screens"
+          alt="screen1"
+          src={`images/${screenId}/${scale}.png`}
+          style={
+            activeScreenId !== screenId ? { transform: "translateY(100%)" } : {}
+          }
+        />
+      ))}
     </div>
   );
 }
