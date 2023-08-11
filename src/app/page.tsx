@@ -2,9 +2,10 @@
 import HomeNav from "@/components/nav/HomeNav/HomeNav";
 import { ScreenId } from "@/constants/animations";
 import Hero from "@/sections/hero/Hero";
-import Text from "@/sections/text/Text";
+import Text from "@/components/text/Text";
 import dynamic from "next/dynamic";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
+import Contact from "@/sections/contact/Contact";
 
 const Screens = dynamic(() => import("@/sections/screens/Screens"), {
   ssr: false,
@@ -23,7 +24,6 @@ export default function Home() {
             ?.split("-")?.[0];
           if (newActiveScreenId) {
             setActiveScreenId(newActiveScreenId as ScreenId);
-            console.log(newActiveScreenId);
           }
         }
       });
@@ -60,13 +60,14 @@ export default function Home() {
         }
       />
       <div id={`${ScreenId.screen3}-Mark`} />
-
+      <div id={"screemBottomDown-mark"} />
       <Text
         heading={<>Launch Faster</>}
         subHeading={
           <>Logical can get systems to market in minutes instead of weeks.</>
         }
       />
+      <Contact />
       <Screens activeScreenId={activeScreenId} />
     </main>
   );

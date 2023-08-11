@@ -7,6 +7,22 @@ export const CONSTANTS_FOR_SCROLLY_ANIMATION = {
     max: 100,
     min: 50,
   },
+  screemBottomDown: (start: number) => {
+    return {
+      start,
+      end: start + 500,
+      max: 100,
+      min: 0,
+    };
+  },
+  formMoveLeft: (start: number) => {
+    return {
+      start,
+      end: start + 700,
+      max: 450,
+      min: 0,
+    };
+  },
   screenBottomUp: (screen: ScreenKeys | null) => {
     // max value: height of the end of the scroll
     // min value: inital bottom

@@ -11,7 +11,8 @@ import { getScreenImgScale } from "@/utils/screen";
 import clsx from "clsx";
 import React, { useEffect, useMemo, useState } from "react";
 import "./Screens.css";
-const { screenBottomUp, screenScaleUp } = CONSTANTS_FOR_SCROLLY_ANIMATION;
+const { screenBottomUp, screenScaleUp, screemBottomDown } =
+  CONSTANTS_FOR_SCROLLY_ANIMATION;
 export default function Screens({
   activeScreenId,
 }: {
@@ -54,6 +55,31 @@ export default function Screens({
       window.removeEventListener("scroll", handleScrollY);
     };
   }, [isPreXL, screenBottomUpFromScreening]);
+
+  useEffect(() => {
+    const screemBottomDownMarkElement = document.getElementById(
+      "screemBottomDown-mark"
+    );
+    const handleScrollY = () => {
+      // screenBottomUp
+      const scrollY = window.scrollY;
+      const start = screemBottomDownMarkElement?.offsetTop;
+      if (start) {
+        setBottom(
+          -1 *
+            getAnimationValueByScrollY({
+              ...screemBottomDown(start),
+              scrollY,
+            })
+        );
+      }
+    };
+    handleScrollY();
+    window.addEventListener("scroll", handleScrollY);
+    return () => {
+      window.removeEventListener("scroll", handleScrollY);
+    };
+  }, [screenBottomUpFromScreening]);
   return (
     <div
       id="screen"

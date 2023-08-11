@@ -17,6 +17,11 @@ module.exports = {
         grayForBackground: "#E7E9EA",
         grayForHeroLeft: "#F8FAF9",
         grayForHeroRight: "#B3B7B7",
+        formBg: "#FFFFFF",
+        inputBg: "#F8FAF9",
+        inputBorder: "#E7E9EA",
+        inputBorderActive: "#ffffff",
+        buttonBg: "#000000",
       },
       screens: {
         sm: "640px",
@@ -28,7 +33,10 @@ module.exports = {
         "2xl": "1536px",
       },
       fontSize: {
-        "8xl": ["7rem"],
+        "8xl": ["7rem", "1"],
+      },
+      backgroundImage: {
+        "form-right": "url('/images/dark-bg.jpg')",
       },
     },
   },

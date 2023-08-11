@@ -3,10 +3,15 @@ import React, { ReactElement } from "react";
 export type IProps = {
   heading: ReactElement;
   subHeading: ReactElement;
+  height?: string;
 };
-export default function Text({ heading, subHeading }: IProps) {
+export default function Text({
+  heading,
+  subHeading,
+  height = "h-[100vh]",
+}: IProps) {
   return (
-    <section className="h-[100vh] bg-grayForBackground">
+    <section className={clsx(height, "bg-grayForBackground")}>
       <div className="z-20 text-center">
         <h1
           className={clsx(
