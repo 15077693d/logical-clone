@@ -13,7 +13,11 @@ export default function HomeNav() {
   const isPreXL = useIsMediaQuery(`(min-width: ${preXLValue})`);
   const [width, setWidth] = useState(50);
   const [translateY, setTranslateY] = useState(0);
-
+  const [isInit, setIsInit] = useState(true);
+  // avoid server != client error
+  useEffect(() => {
+    setIsInit(false);
+  }, []);
   useEffect(() => {
     const handleScroll = () => {
       const scrollY = window.scrollY;
@@ -49,7 +53,9 @@ export default function HomeNav() {
         "mix-blend-difference w-full flex justify-between items-center fixed px-9 py-7 z-30"
       )}
       style={
-        isPreXL
+        isInit
+          ? {}
+          : isPreXL
           ? { width: `${width}%`, transform: `translateY(-${translateY}px)` }
           : {}
       }

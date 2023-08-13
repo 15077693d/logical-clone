@@ -13,7 +13,11 @@ export default function Hero() {
   const [opacity, setOpacity] = useState(1);
   const [translateY, setTranslateY] = useState(0);
   const isPreXL = useIsMediaQuery(`(min-width: ${preXLValue})`);
-
+  const [isInit, setIsInit] = useState(true);
+  // avoid server != client error
+  useEffect(() => {
+    setIsInit(false);
+  }, []);
   useEffect(() => {
     const handleScroll = () => {
       const scrollY = window.scrollY;
@@ -46,7 +50,13 @@ export default function Hero() {
         "preXL:flex",
         "preXL:sticky preXL:top-0"
       )}
-      style={isPreXL ? { transform: `translateY(-${translateY}%)` } : {}}
+      style={
+        isInit
+          ? {}
+          : isPreXL
+          ? { transform: `translateY(-${translateY}%)` }
+          : {}
+      }
     >
       <HeroLeft opacity={opacity} />
       <HeroRight opacity={opacity} />

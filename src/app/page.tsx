@@ -1,17 +1,17 @@
 "use client";
 import { ScreenId } from "@/constants/animations";
-import Hero from "@/sections/hero/Hero";
 import Text from "@/components/text/Text";
 import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
-import Contact from "@/sections/contact/Contact";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import Hero from "@/sections/hero/Hero";
+import HomeNav from "@/components/nav/HomeNav/HomeNav";
 
 const Screens = dynamic(() => import("@/sections/screens/Screens"), {
   ssr: false,
 });
 
-const HomeNav = dynamic(() => import("@/components/nav/HomeNav/HomeNav"), {
+const Contact = dynamic(() => import("@/sections/contact/Contact"), {
   ssr: false,
 });
 // Create a client
@@ -20,6 +20,7 @@ export default function Home() {
   const [activeScreenId, setActiveScreenId] = useState<ScreenId>(
     ScreenId.screen1
   );
+
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {

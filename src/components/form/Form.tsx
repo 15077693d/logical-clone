@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Input from "../input/Input";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
@@ -10,16 +10,23 @@ export default function Form() {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isDirty },
+    reset,
   } = useForm<IFormValues>();
   const mutation = useMutation({
     mutationFn: (data: IFormValues) => {
       return axios.post("/api/contact", data);
     },
   });
+
   const onSubmit: SubmitHandler<IFormValues> = (data) => {
     mutation.mutate(data);
   };
+  useEffect(() => {
+    if (mutation.isSuccess) {
+      reset();
+    }
+  }, [mutation.isSuccess, reset]);
   return (
     <form
       noValidate
@@ -62,9 +69,17 @@ export default function Form() {
         error={errors[IFormInputId.message]?.message}
       />
       <div className="p-5">
-        <button className=" w-full rounded-lg p-3 text-white bg-buttonBg">
-          Send
+        <button
+          className=" w-full rounded-lg p-3 text-white bg-buttonBg"
+          disabled={mutation.isLoading}
+        >
+          {mutation.isLoading ? "Sending..." : "Send"}
         </button>
+        {mutation.isSuccess && !isDirty && (
+          <span className=" block mt-2 text-center">
+            Message sent successfully! 🎉
+          </span>
+        )}
       </div>
     </form>
   );
