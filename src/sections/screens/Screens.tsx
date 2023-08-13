@@ -64,7 +64,7 @@ export default function Screens({
       // screenBottomUp
       const scrollY = window.scrollY;
       const start = screemBottomDownMarkElement?.offsetTop;
-      if (start) {
+      if (start && scrollY >= start) {
         setBottom(
           -1 *
             getAnimationValueByScrollY({
