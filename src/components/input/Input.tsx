@@ -8,6 +8,8 @@ type Props = {
   type: HTMLInputTypeAttribute;
   isTextarea?: boolean;
   isBottomBorderRequired?: boolean;
+  error?: string;
+  novalidate?: boolean;
 };
 export default function Input({
   label,
@@ -16,6 +18,7 @@ export default function Input({
   isTextarea = false,
   isBottomBorderRequired = true,
   registerFn,
+  error,
 }: Props) {
   return (
     <div
@@ -38,6 +41,9 @@ export default function Input({
           placeholder={placeholder}
           className="mt-2 w-full transition-colors block p-2 bg-inputBg border-inputBorder border-[1px]  rounded-lg focus:border-black"
         />
+      )}
+      {error && (
+        <span className=" text-inputError text-xs mt-2 block">{error}</span>
       )}
     </div>
   );

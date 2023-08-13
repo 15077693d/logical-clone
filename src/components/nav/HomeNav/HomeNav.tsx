@@ -8,6 +8,7 @@ import clsx from "clsx";
 import React, { useEffect, useState } from "react";
 import { preXLValue } from "@/constants/styles";
 const { navBarWidth, navBarTranslateY } = CONSTANTS_FOR_SCROLLY_ANIMATION;
+
 export default function HomeNav() {
   const isPreXL = useIsMediaQuery(`(min-width: ${preXLValue})`);
   const [width, setWidth] = useState(50);

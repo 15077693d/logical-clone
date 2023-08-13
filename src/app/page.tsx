@@ -1,5 +1,4 @@
 "use client";
-import HomeNav from "@/components/nav/HomeNav/HomeNav";
 import { ScreenId } from "@/constants/animations";
 import Hero from "@/sections/hero/Hero";
 import Text from "@/components/text/Text";
@@ -9,6 +8,10 @@ import Contact from "@/sections/contact/Contact";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 const Screens = dynamic(() => import("@/sections/screens/Screens"), {
+  ssr: false,
+});
+
+const HomeNav = dynamic(() => import("@/components/nav/HomeNav/HomeNav"), {
   ssr: false,
 });
 // Create a client

@@ -20,6 +20,7 @@ module.exports = {
         formBg: "#FFFFFF",
         inputBg: "#F8FAF9",
         inputBorder: "#E7E9EA",
+        inputError: "#FF0000",
         inputBorderActive: "#ffffff",
         buttonBg: "#000000",
       },
