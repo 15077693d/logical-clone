@@ -1,12 +1,9 @@
+import { IFormValues } from "@/app/interface";
 import { NextResponse } from "next/server";
 import { createTransport } from "nodemailer";
 
 export async function POST(request: Request) {
-  const { senderEmail, name, content } = (await request.json()) as {
-    senderEmail: string;
-    name: string;
-    content: string;
-  };
+  const { senderEmail, name, message } = (await request.json()) as IFormValues;
   const transporter = createTransport({
     service: "gmail",
     host: "smtp.gmail.com",
@@ -22,7 +19,7 @@ export async function POST(request: Request) {
       from: process.env.NODEMAILER_EMAIL,
       to: process.env.NODEMAILER_EMAIL,
       subject: `New email from ${name} <${senderEmail}>`,
-      text: content,
+      text: message,
     });
     return NextResponse.json(
       { message: `Message sent: ${info.messageId}` },

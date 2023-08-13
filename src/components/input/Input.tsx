@@ -1,6 +1,8 @@
 import clsx from "clsx";
 import React, { HTMLInputTypeAttribute } from "react";
+import { UseFormRegisterReturn } from "react-hook-form";
 type Props = {
+  registerFn?: (() => UseFormRegisterReturn) | undefined;
   label: string;
   placeholder: string;
   type: HTMLInputTypeAttribute;
@@ -13,6 +15,7 @@ export default function Input({
   type,
   isTextarea = false,
   isBottomBorderRequired = true,
+  registerFn,
 }: Props) {
   return (
     <div
@@ -24,11 +27,13 @@ export default function Input({
       <label className="text-sm">{label}</label>
       {isTextarea ? (
         <textarea
+          {...registerFn?.()}
           placeholder={placeholder}
           className="mt-2 w-full transition-colors block p-2 bg-inputBg border-inputBorder border-[1px]  rounded-lg focus:border-black"
         />
       ) : (
         <input
+          {...registerFn?.()}
           type={type}
           placeholder={placeholder}
           className="mt-2 w-full transition-colors block p-2 bg-inputBg border-inputBorder border-[1px]  rounded-lg focus:border-black"
