@@ -29,8 +29,6 @@ export async function POST(request: Request) {
     return NextResponse.json(
       {
         error: JSON.stringify(error),
-        NODEMAILER_EMAIL: process.env.NODEMAILER_EMAIL,
-        NODEMAILER_PW: process.env.NODEMAILER_PW,
       },
       { status: 404 }
     );
