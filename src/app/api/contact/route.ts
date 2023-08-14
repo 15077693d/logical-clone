@@ -26,6 +26,13 @@ export async function POST(request: Request) {
       { status: 200 }
     );
   } catch (error) {
-    return NextResponse.json({ error: JSON.stringify(error) }, { status: 404 });
+    return NextResponse.json(
+      {
+        error: JSON.stringify(error),
+        NODEMAILER_EMAIL: process.env.NODEMAILER_EMAIL,
+        NODEMAILER_PW: process.env.NODEMAILER_PW,
+      },
+      { status: 404 }
+    );
   }
 }
